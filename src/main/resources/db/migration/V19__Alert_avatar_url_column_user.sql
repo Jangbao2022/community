@@ -1,0 +1,1 @@
+alter table user modify avatar_url varchar(1000) null;

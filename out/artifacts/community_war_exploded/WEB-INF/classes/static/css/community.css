@@ -1,0 +1,119 @@
+
+body {
+    background-color: #efefef
+}
+
+.main {
+    margin: 30px;
+    background-color: white;
+}
+
+.btn-publish {
+    float: right;
+    margin-bottom: 15px;
+}
+
+.media-object {
+    width: 38px;
+    height: 38px;
+}
+
+.media-body {
+    padding-top: 12px;
+}
+
+.text-desc {
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
+
+.profile .section {
+    margin-top: 15px;
+}
+
+/*问题标题*/
+.question-title {
+    margin-top: 25px;
+}
+
+.question-tag{
+    margin-right: 6px;
+}
+
+.question-related{
+    line-height: 20px;
+    padding-left: 0;
+    font-size: 12px;
+    list-style: none;
+
+}
+
+.question-recommend{
+    width: 100%;
+}
+
+.community-menu {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 13px;
+    color: #999;
+}
+
+.jumbotron {
+    margin: 50px;
+}
+
+/*评论内容的样式*/
+.comment {
+    margin: 10px 0;
+}
+
+.comment-sp {
+    margin-top: 0;
+}
+
+/*所有评论的样式*/
+.comments {
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/*二级评论的样式*/
+.sub-comments{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+.sub-comments .btn{
+    margin: 10px 0;
+}
+
+.btn-comment {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.menu {
+    margin-top: 5px;
+    color: #999;
+}
+
+.menu .icon {
+    margin-right: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.menu .active {
+    color: #499ef3;
+}
+
+.menu .icon:hover {
+    color: #499ef3;
+}
+
+

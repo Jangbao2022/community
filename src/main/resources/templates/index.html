@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>吃货社区</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+</head>
+<script type="application/javascript">
+    window.onload = function () {
+        // debugger;a
+        var closeable = window.localStorage.getItem("closeable");
+        if (closeable == "true") {
+            //如果是通过登陆新开的窗口
+
+            //移除存储的参数
+            window.localStorage.removeItem("closeable")
+            //关闭窗口
+            window.close()
+        }
+
+    }
+
+</script>
+
+<body>
+<div th:insert="~{navigation::nav}"></div>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
+            <hr>
+            <div th:if="${session.user == null}">
+                请先登陆
+            </div>
+            <div class="questionList" th:if="${session.user != null&&pagination!=null}">
+                <div th:insert="~{dataList::questionList}"></div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a th:href="@{/(page=${pagination.firstPage},search=${search})}"
+                               th:if="${pagination.showFirstPage}"
+                               aria-label="Previous">
+                                <span aria-hidden="true">&lt;&lt;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/(page=${pagination.page}-1,search=${search})}"
+                               th:if="${pagination.showPrevious}">
+                                <span aria-hidden="true">&lt;</span>
+                            </a>
+                        </li>
+                        <li th:class="${pagination.page==page}?'active':''" th:each="page:${pagination.pages}">
+                            <a th:href="@{/(page=${page},search=${search})}" th:text="${page}"></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/(page=${pagination.page}+1,search=${search})}"
+                               th:if="${pagination.showNext}">
+                                <span aria-hidden="true">&gt;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/(page=${pagination.endPage},search=${search})}"
+                               th:if="${pagination.showEndPage}"
+                               aria-label="Next">
+                                <span aria-hidden="true">&gt;&gt;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div th:if="${session.user != null&&pagination==null}">
+                暂时还没有问题呢
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>热门话题</h3>
+        </div>
+    </div>
+</div>
+<div th:insert="~{footer::footer}"></div>
+</body>
+</html>

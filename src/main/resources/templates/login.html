@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>登陆 - 吃货社区</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <link rel="stylesheet" href="/css/editormd.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/community.js" type="application/javascript"></script>
+    <script src="/js/editormd.min.js" type="application/javascript"></script>
+</head>
+<body>
+<div th:insert="~{navigation::nav}"></div>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-print" aria-hidden="true"></span>登陆</h2>
+            <hr>
+            <form class="form-inline" action="/login" method="post">
+                <div class="form-group">
+                    <label class="sr-only" for="accountId">账号</label>
+                    <input type="text" maxlength="20" minlength="0" class="form-control" id="accountId"
+                           name="accountId" placeholder="账号">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="password">密码</label>
+                    <input type="password" maxlength="20" minlength="0" class="form-control" id="password"
+                           name="password" placeholder="密码">
+                </div>
+                <button type="submit" class="btn btn-success">登陆</button>
+            </form>
+            <div class="jumbotron login-jumbotron">
+                <!--<h1>欢迎来到社区,赶紧登陆吧</h1>-->
+                <p>输入你的账号密码即可开始探险</p>
+                <div class="login-jumbotron-image">
+                    <img src="/images/img/onePiece.jpg" width="100%" >
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>用户指南</h3>
+            ●用户名:.....................................<br>
+            ●密码:...........................................<br>
+            ●...:...........................................<br>
+        </div>
+    </div>
+</div>
+<div th:insert="~{footer::footer}"></div>
+
+
+</body>
+</html>

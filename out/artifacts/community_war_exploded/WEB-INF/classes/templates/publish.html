@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>发布 - 码匠社区</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/community.js" type="application/javascript"></script>
+</head>
+<body>
+<div th:insert="~{navigation::nav}"></div>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
+            <hr>
+            <form action="/publish" method="post">
+
+                <input type="hidden" name="id" th:value="${id}">
+                <div class="form-group">
+                    <label for="questionTitle">问题标题(简明扼要):</label>
+                    <input id="questionTitle" name="title" type="text" class="form-control" placeholder="问题标题__"
+                           autocomplete="off" th:value="${title}">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">问题补充(必填,请参照右侧提示):</label>
+                    <textarea id="description" name="description" class="form-control" cols="30" rows="10"
+                              th:text="${description}"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="questionTitle">添加标签:</label>
+                    <input id="tag" name="tag" type="text" class="form-control" placeholder="输入标签,以逗号隔开"
+                           autocomplete="off" th:value="${tag}">
+                    <div>
+                        <span class="label label-info question-tag">
+                            <span class="glyphicon glyphicon-tags" onclick="selectTag('spring')"></span>
+                            <span>spring</span>
+                        </span>
+                    </div>
+                </div>
+                <span th:if="${error}" class="alert alert-danger" th:text="${error}"></span>
+                <button type="submit" class="btn btn-success btn-publish">发布</button>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>问题发起指南</h3>
+            ●问题标题:请用请用精简的语言描述你发布的问题,不超过25个字<br>
+            ●问题补充:...........................................<br>
+            ●问题标签:...........................................<br>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

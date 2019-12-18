@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${sectionName}">个人中心 - 吃货社区</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/community.js" type="application/javascript"></script>
+</head>
+<body>
+<div th:insert="~{navigation::nav}"></div>
+<div class="container-fluid main profile">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2>
+                <span th:text="${sectionName}"></span>
+            </h2>
+            <hr>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <!--问题列表-->
+                <div class="questionList" th:if="${section=='questions'}">
+                    <div th:if="${pagination!=null}">
+                        <div th:insert="~{dataList::questionList}"></div>
+                        <div th:insert="~{dataList::buttonList}"></div>
+                    </div>
+                    <div th:unless="${pagination!=null}">
+                        暂时还没有问题呢
+                    </div>
+                </div>
+
+                <!--回复列表-->
+                <div class="notificationList" th:if="${section=='replies'}">
+                    <div th:if="${pagination!=null}">
+                        <div th:insert="~{dataList::notificationList}"></div>
+                        <div th:insert="~{dataList::buttonList}"></div>
+                    </div>
+                    <div th:unless="${pagination!=null}">
+                        暂时还没有回复呢
+                    </div>
+                </div>
+
+                <!--个人信息-->
+                <div class="profile-info" th:if="${section=='info'}">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img th:src="${user.avatarUrl}==null?'/images/add/add5.png':${user.avatarUrl}"
+                                     class="avatar-img img-rounded">
+                                <div class="caption">
+                                    <div class="profile-info-cols">
+                                        <span class="profile-info-col">账号:&nbsp;&nbsp;</span>
+                                        <span th:text="${user.accountId}"></span>
+                                    </div>
+                                    <div class="profile-info-cols">
+                                        <span class="profile-info-col">昵称:&nbsp;&nbsp;</span>
+                                        <span th:text="${user.name}"></span>
+                                    </div>
+                                    <div class="profile-info-cols">
+                                        <span class="profile-info-col">描述:&nbsp;&nbsp;</span>
+                                        <p>
+                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span th:text="${user.bio}"></span>
+                                        </p>
+                                    </div>
+                                    <a th:href="@{'/logon'(id=${user.id})}" class="btn btn-info pull-right"
+                                       role="button">修改资料</a>
+                                    <a class="btn btn-info "
+                                       role="button" onclick="uploads('avatar_update')">修改头像</a>
+                                    <div hidden="hidden">
+                                        <input type="file" id="avatar_update"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-8">
+                            <div style="text-align: center;font-size: 20px;">
+                                <p>推荐头像</p>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-3" title="点击切换为头像"
+                                         th:each="i:${#numbers.sequence(1,12)}">
+                                        <a th:onclick="|openUploads('avatar',${i})|" class="thumbnail">
+                                            <img th:src="'/images/img/img'+${i}+'.jpg'" class="img-rounded"
+                                                 th:id="'avatar_'+${i}">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <img>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <div class="list-group sections">
+                <a href="/profile/info" class="list-group-item profile-section"
+                   th:classappend="${section=='info'}?'active':''">
+                    个人信息
+                </a>
+                <a href="/profile/questions" class="list-group-item profile-section"
+                   th:classappend="${section=='questions'}?'active':''">
+                    我的问题
+                    <span class="badge"></span>
+                </a>
+                <a href="/profile/replies" class="list-group-item profile-section"
+                   th:classappend="${section=='replies'}?'active':''">
+                    最新回复
+                    <span class="badge" th:text="${session.user.unreadCount}">14</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="~{footer::footer}"></div>
+
+</body>
+</html>

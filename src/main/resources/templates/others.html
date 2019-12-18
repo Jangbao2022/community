@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${user.name}+'的空间'">TA的空间 - 吃货社区</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/community.js" type="application/javascript"></script>
+</head>
+<body>
+<div th:insert="~{navigation::nav}"></div>
+<div class="container-fluid main profile">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2>
+                <span th:text="${user.name}+'的资料'"></span>
+            </h2>
+            <hr>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <!--个人信息-->
+                <div class="profile-info">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img th:src="${user.avatarUrl}==null?'/images/add/add5.png':${user.avatarUrl}"
+                                     class="avatar-img img-rounded">
+                                <div class="caption">
+                                    <div class="profile-info-cols">
+                                        <span class="profile-info-col">账号:&nbsp;&nbsp;</span>
+                                        <span th:text="${user.accountId}"></span>
+                                    </div>
+                                    <div class="profile-info-cols">
+                                        <span class="profile-info-col">昵称:&nbsp;&nbsp;</span>
+                                        <span th:text="${user.name}"></span>
+                                    </div>
+                                    <div class="profile-info-cols">
+                                        <span class="profile-info-col">描述:&nbsp;&nbsp;</span>
+                                        <p>
+                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span th:text="${user.bio}"></span>
+                                        </p>
+                                    </div>
+                                    <button type="button" class="btn btn-lg btn-primary" disabled="disabled">添加TA为好友</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-8">
+                            <div class="jumbotron" style="margin: 0">
+                                <h1>Hello,Friend!</h1>
+                                <p>快来添加我好友和我玩吧</p>
+                                <p>(然而添加好友功能并没有做 = =)</p>
+                                <p>
+                                    <button class="btn btn-info btn-lg " >发射爱心</button>
+                                    <button class="btn btn-info btn-lg pull-right" >撩他一下</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>广交朋友</h3>
+            ●发帖:.....................................<br>
+            ●评论:...........................................<br>
+            ●...:...........................................<br>
+        </div>
+    </div>
+</div>
+<div th:insert="~{footer::footer}"></div>
+
+</body>
+</html>
